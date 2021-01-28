@@ -1,3 +1,7 @@
-# eef-practical-code
+This the code and *data?* accompanying the paper High-Multiplicity Fair
+Allocation Made More Practical accepted for publication at the 20th
+International Conference on Autonomous Agents and Multiagent Systems.
 
-A sketch project for making the code of our submission available
+#Repository Organization
+
+solver --- solver in C++ to solve the problem

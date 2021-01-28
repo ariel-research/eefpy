@@ -1,0 +1,5 @@
+# specify the objective: none, max_swf, min_swf, min_max_rel_envy, min_max_abs_envy
+objective max_swf
+
+# specify what envy notion to use: none, ef, ef1, efx
+envy_notion ef1
