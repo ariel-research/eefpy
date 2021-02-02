@@ -1,6 +1,8 @@
-This the code and **data?** accompanying the paper High-Multiplicity Fair
-Allocation Made More Practical accepted for publication at the 20th
-International Conference on Autonomous Agents and Multiagent Systems.
+This is the code accompanying the paper High-Multiplicity Fair
+Allocation Made More Practical by Robert [Bredereck](https://robert.bredereck.info/), Aleksander Figiel (the main code contributor), [Andrzej Kaczmarczyk](https://www.user.tu-berlin.de/droores/), [Dušan Knop](https://fit.cvut.cz/cs/fakulta/lide/5176-rndr-dusan-knop-ph-d/publikace) and [Rolf Niedermeier](https://www.akt.tu-berlin.de/index.php?id=110570), which was [accepted for publication](https://aamas2021.soton.ac.uk/programme/accepted-papers/) at [the 20th
+International Conference on Autonomous Agents and Multiagent Systems](https://aamas2021.soton.ac.uk/).
+
+The code is protected by GNU GPL v3.0.
 
 # Short Introduction
 
@@ -13,7 +15,8 @@ For a description of the supported fairness and efficiency concepts, techniques 
 
 # Repository Organization
 
-solver --- solver in C++ to solve the problem
+- `solver` --- solver in C++ to solve the problem
+- `COPYING` --- the GNU General Public License v3.0
 
 
 # Solver
@@ -40,7 +43,6 @@ The solver accepts the following arguments whose slightly more detailed descript
       --incomplete           Enable incomplete allocations through the introduction of a trash agent
       --iter-alpha-lock      Minimize the alpha in EF-alpha, find bottleneck agent and lock their alpha
       --mintc_crude          Use a crude, but faster version of MINTCs
-      --mintc_eq0            Use MINTCs to find strictly pareto efficent allocations
       --mintc_mode=MODE      Specify in what way to use MINTCs
       --objective=NOTION, --obj=NOTION
                              Specify objective (none, max_swf, min_swf, min_max_abs_envy)
@@ -55,7 +57,6 @@ We provide an extended description of several parameters. We start with the most
 Parameters affecting considering usage of minimum trading cycles (MINTC):
 - `--mintc_crude` --- The solver adds trading cycles **that shrink the search space** basing **only** on the resources that are taken away in each cycle (it is enough since the fact that a cycle makes one agent ``having'' a negative number of resources is enough).
 - `--mintc_mode=MODE` --- Specify how to exactly optimize using minimal trading cycle when using `mintc` efficiency value: minimizing the number of minimal trading cycle (value: `const`), minimizing the number of univolved agents (value: `num_agents`), or maximizing the number of involved agents (value: `num_positive_agents`).
-- `--mintc_eq0` --- **???**.
 
 Additional parameters affecting the outcoming allocations:
 - `--incomplete` --- This switch turns on the trash agent which is **not considered** in envy and fairness concepts. Effectively, it means that an outcome allocation can be incomplete (not all resources allocated to the age2nts).
