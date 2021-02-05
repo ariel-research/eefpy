@@ -16,7 +16,9 @@ For a description of the supported fairness and efficiency concepts, techniques 
 # Repository Organization
 
 - `solver` --- solver in C++ to solve the problem
-- `COPYING` --- the GNU General Public License v3.0
+- `COPYING`, `LICENSE` --- the GNU General Public License v3.0 (each filename meets a different convention of licence file naming schemes)
+- `licensing_tools` --- helper tools for maintaining the license-header in the soruce files
+- `README.md` --- this readme
 
 
 # Solver
