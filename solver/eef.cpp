@@ -1,191 +1,28 @@
-#include <cassert>
-#include <vector>
-#include <string>
-#include <chrono>
-#include <stdlib.h>
-#include <time.h>
-#include <cmath>
-
-#include <ilcplex/ilocplex.h>
-
-#include "eef.h"
-#include "trading_cycle.h"
-
-#include "ilp_model/primary.h"
-#include "ilp_model/efficiency/pareto.h"
-#include "ilp_model/efficiency/mintc.h"
-#include "ilp_model/efficiency/none.h"
-
-using namespace std;
-
-static float sec_timediff(chrono::steady_clock::time_point start, chrono::steady_clock::time_point end) {
-		return ((float) chrono::duration_cast<chrono::milliseconds>(end - start).count()) / 1000 ;
-}
-
-vector< vector<long> > EEF::solve(EEF_Config cfg) {
-	vector< vector<long> > pi;
-	
-
-	try {
-		pi = solve_cplex(cfg);
-	}
-	catch (IloException &e) {
-		cerr << "Concert exception caught: " << e.getMessage() << endl;
-	}
-	catch (...) {
-		cerr << "Unknown exception caught" << endl;
-	}
-	
-	return pi;
-}
-
-#define DISABLE_TRASH_AGENT() {if (cfg.trash_agent) {n--;}}
-#define ENABLE_TRASH_AGENT() {if (cfg.trash_agent) {n++;}}
-
-#define ALPHA_ACCURACY 0.001
-
-vector<float> EEF::find_alpha_range(vector<bool> locked) {
-	float alpha_min = 0;
-	float alpha_max = 0; // highest non-infinity alpha value that's feasible
-	bool set_min = false;
-	bool set_max = false;
-
-	// compute alpha_min
-
-	for (long i = 0; i < n; i++) {
-		if (locked[i])
-			continue;
-
-		/* pick all positive items for yourself and all negatives for the other */
-		float self = 0;
-		float other = 0;
-		for (long j = 0; j < m; j++) {
-			if (u[i][j] > 0)
-				self += u[i][j];
-			if (u[i][j] < 0)
-				other += u[i][j];
-		}
-
-		float ratio = other  / self;
-		if (!set_min) {
-			alpha_min = ratio;
-			set_min = true;
-		}
-		else
-			alpha_min = max(alpha_min, ratio);
-
-
-		/* pick smallest utility item for yourself, and all others for the other */
-		self = 0;
-		other = 0;
-		long picked = -1;
-
-		for (long j = 0; j < m; j++) {
-			if (u[i][j] > 0) {
-				if (picked == -1) {
-					self = u[i][j];
-					picked = j;
-				}
-				else if (self > u[i][j]) {
-					self = u[i][j];
-					picked = j;
-				}
-			}
-		}
-
-		assert(picked != -1 /* please make sure in your instances each item has at least one positive utility item */);
-		for (long j = 0; j < m; j++) {
-			if (u[i][j] > 0 && j != picked) {
-				other += u[i][j];
-			}
-		}
-
-		if (other == 0) {
-			// alpha_min = alpha_max for this agent
-			alpha_max = max(alpha_max, ratio);
-			continue;
-		}
-
-		ratio = other / self;
-		if (!set_max) {
-			alpha_max = ratio;
-			set_max = true;
-		}
-		else
-			alpha_max = max(alpha_max, ratio);
-	}
-
-	vector<float> r{alpha_min, alpha_max};
-	return r;
-}
-
-vector< vector<long> > EEF::solve_cplex(EEF_Config cfg) {
-	// stats
-	float total_sec = 0;
-	float setup_sec = 0;
-	float primary_sec = 0;
-	float secondary_sec = 0;
-
-	chrono::steady_clock::time_point total_start, total_end;
-	chrono::steady_clock::time_point setup_start, setup_end;
-	chrono::steady_clock::time_point primary_start, primary_end;
-	chrono::steady_clock::time_point secondary_start, secondary_end;
-
-	total_start = chrono::steady_clock::now();
-
-	setup_start = chrono::steady_clock::now();
-
-
-
-	/*************************************************************************************************************
-	 *************************************************************************************************************
-				Prebuilt LPs - configuration is done by the constructors
-	 *************************************************************************************************************
-	 *************************************************************************************************************/
-
-	// PRIMARY LP used for finding nice allocations
-	
-	Primary_ILP ilp(*this, cfg);
-	// load any precached trading cycles
-	for (size_t i = 0; i < cached_tcs.size(); i++) {
-		assert(false);
-		ilp.add_tc(cached_tcs[i]);
-	}
-	ilp.cplex.extract(ilp.model);
-
-	// SECONDARY LPs used for checking efficiency of allocations
-
-	// if item trashing is enabled then we ignore the trash agent in efficiency considerations
-	DISABLE_TRASH_AGENT();
-
-	Pareto_Efficiency_ILP pareto_eff(*this, cfg);
-	pareto_eff.cplex.extract(pareto_eff.model);
-
-	MINTC_Efficiency_ILP mintc_eff(*this, cfg);
-	mintc_eff.cplex.extract(mintc_eff.model);
-
-	None_Efficiency_ILP none_eff(*this, cfg);
-	none_eff.cplex.extract(none_eff.model);
-
-	// we will only be using one of these efficiency ILPs
-	Efficiency_ILP *all_eff_ilps[] = {&none_eff, &pareto_eff, &mintc_eff};
-	size_t tmp = 0;
-	if (cfg.efficiency == Efficiency_notion::PARETO) 
-		tmp = 1;
-	if (cfg.efficiency == Efficiency_notion::DYNAMIC_MINTC) 
-		tmp = 2;
-
-	// ugly hack to get a reference to the correct ILP
-	Efficiency_ILP &eff_ilp = *all_eff_ilps[tmp];
-	
-
-	ENABLE_TRASH_AGENT();
-
-	/*************************************************************************************************************
-	 *************************************************************************************************************
-				SOlVER LOGIC
-	 *************************************************************************************************************
-	 *************************************************************************************************************/
+/****************************************************************************
+*****************************************************************************
+*HiMEFAF: High-Multiplicity Efficient Fair Allocations Finder 
+*Copyright (C) 2020 Aleksander Figiel
+*****************************************************************************
+*This file is a part of HiMEFAF: High-Multiplicity Efficient Fair Allocations
+*Finder 
+*
+*HiMEFAF is free software: you can redistribute it
+*and/or modify it under the terms of the GNU General Public
+*License as published by the Free Software Foundation, either
+*version 3 of the License, or (at your option) any later
+*version.
+*
+*This program is distributed in the hope that it will be
+*useful, but WITHOUT ANY WARRANTY; without even the implied
+*warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+*PURPOSE.  See the GNU General Public License for more
+*details.
+*
+*You should have received a copy of the GNU General Public
+*License along with this program.  If not, see
+*<https://www.gnu.org/licenses/>
+*****************************************************************************
+****************************************************************************/
 
 	srand(time(NULL));
 
