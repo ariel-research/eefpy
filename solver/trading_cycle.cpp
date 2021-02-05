@@ -13,7 +13,6 @@ using namespace std;
 
 
 vector< vector< vector<long> > > EEF::all_trading_cycles() {
-	//TODO? currently we only count trading cycles up to ~10M
 
 	IloEnv env;
 	IloModel model(env);

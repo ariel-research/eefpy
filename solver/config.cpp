@@ -45,7 +45,7 @@ static struct argp_option options[] = {
 	{"objective",  OPT_OBJECTIVE,  "NOTION", 0, "Specify objective (none, max_swf, min_swf, min_max_abs_envy)"},
 	{"obj",        OPT_OBJECTIVE,  "NOTION", OPTION_ALIAS, 0},
 	{"debug",      OPT_DEBUG,             0, 0, "Enable debug output"},
-	{"divisibles", OPT_DIVISIBLES,        0, 0, "Enable simulation of divisible items. TODO: probably broken right now"},
+	{"divisibles", OPT_DIVISIBLES,        0, 0, "Enable simulation of divisible items. Broken right now"},
 	{"incomplete", OPT_INCOMPLETE,        0, 0, "Enable incomplete allocations through the introduction of a trash agent"},
 	{"config",     OPT_CONFIG,       "FILE", 0, "Read configuration from file. Not all options are supported"},
 	{"analyse",    OPT_ANALYZE,      "FILE", OPTION_ARG_OPTIONAL, "Read allocation from file or stdin if no file is given"},

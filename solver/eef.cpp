@@ -148,7 +148,6 @@ vector< vector<long> > EEF::solve_cplex(EEF_Config cfg) {
 	Primary_ILP ilp(*this, cfg);
 	// load any precached trading cycles
 	for (size_t i = 0; i < cached_tcs.size(); i++) {
-		// TODO: fix endless loop due to add_tc adding the tc to the cache
 		assert(false);
 		ilp.add_tc(cached_tcs[i]);
 	}

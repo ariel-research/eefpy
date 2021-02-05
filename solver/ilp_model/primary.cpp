@@ -464,7 +464,6 @@ void Primary_ILP::add_tc(vector< vector<long> > tc) {
 
 		for (long i = 0; i < n; i++) {
 			for (long j = 0; j < m; j++) {
-				// TODO: see if the obvious optimization of ignoring positive entries in the TC has any effect
 				if (!cfg.tc_only_negatives || tc[i][j] < 0) {
 					(*cannot_apply_tc) += (x[i][j] + tc[i][j] <= -1);
 				}
