@@ -1,4 +1,3 @@
-{::options parse_block_html="true" /}
 This is the code accompanying the paper High-Multiplicity Fair
 Allocation Made More Practical by Robert [Bredereck](https://robert.bredereck.info/), Aleksander Figiel (the main code contributor), [Andrzej Kaczmarczyk](https://www.user.tu-berlin.de/droores/), [Dušan Knop](https://fit.cvut.cz/cs/fakulta/lide/5176-rndr-dusan-knop-ph-d/publikace) and [Rolf Niedermeier](https://www.akt.tu-berlin.de/index.php?id=110570), which was [accepted for publication](https://aamas2021.soton.ac.uk/programme/accepted-papers/) at [the 20th
 International Conference on Autonomous Agents and Multiagent Systems](https://aamas2021.soton.ac.uk/).
@@ -31,22 +30,15 @@ without any warranty.
 
 
 
-<div class="panel panel-danger">
-**DISCLAIMER**
-{: .panel-heading}
-<div class="panel-body">
-
-There is no warranty for the program, to the extent permitted by applicable
+#### DISCLAIMER
+**There is no warranty for the program, to the extent permitted by applicable
 law. The copyright holders and/or other parties provide the program "as is"
 without warranty of any kind, either expressed or implied, including, but not
 limited to, the implied warranties of merchantability and fitness for a
 particular purpose. The entire risk as to the quality and performance of the
 program is with you. Should the program prove defective, you assume the cost of
-all necessary servicing, repair or correction.
+all necessary servicing, repair or correction.**
 
-
-</div>
-</div>
 
 ## Prerequisites
 CPLEX solver by IBM
