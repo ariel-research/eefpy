@@ -16,6 +16,7 @@ For a description of the supported fairness and efficiency concepts, techniques 
 # Repository Organization
 
 - `solver` --- solver in C++ to solve the problem
+- `paper_example` --- an example input
 - `COPYING`, `LICENSE` --- the GNU General Public License v3.0 (each filename meets a different convention of licence file naming schemes)
 - `licensing_tools` --- helper tools for maintaining the license-header in the soruce files
 - `README.md` --- this readme
@@ -28,6 +29,18 @@ CPLEX solver by IBM
 
 ## Installation
 The solver can be compiled simply by runing `make` in directory `solver`. As an effect, the solver executable called `main` should appear in the directory.
+
+## Input format
+```
+(n = number of agents) (m = number of item types)
+
+(utility of item 1 to agent 1) ... (utility of item m to agent 1)
+...
+(utility of item 1 to agent n) ... (utility of item m to agent n)
+
+(multiplicity of item 1) ... (multiplicity of item m)
+```
+See `paper_example` for an example. There is no possibility to use comments in the input. The solver accepts only numbers and whitespace in as an input.
 
 ## Usage
 
