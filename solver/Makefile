@@ -5,12 +5,15 @@ CFLAGS := -std=c++11 -O2
 #CFLAGS := -std=c++11 -g -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
 #CFLAGS := -std=c++11 -g -Og -Wall -Wextra -pg -no-pie
 
-CPLEX_DIR := /opt/solvers/cplex1290
+CPLEX_DIR := /opt/ibm/ILOG/CPLEX_Studio2211
 CPLEX_FLAGS := -isystem$(CPLEX_DIR)/cplex/include \
                -isystem$(CPLEX_DIR)/concert/include \
                -Xlinker -L$(CPLEX_DIR)/cplex/lib/x86-64_linux/static_pic \
                -Xlinker -L$(CPLEX_DIR)/concert/lib/x86-64_linux/static_pic \
 	       -DIL_STD
+
+eef.so: $(sources) $(headers) Makefile
+	g++ $(CFLAGS) $(CPLEX_FLAGS) -shared -fPIC -o $@ $(sources) -lilocplex -lconcert -lcplex -lm -pthread -ldl
 
 main: $(sources) $(headers) Makefile
 	g++ $(CFLAGS) $(CPLEX_FLAGS) -o $@ $(sources) -lilocplex -lconcert -lcplex -lm -pthread -ldl
