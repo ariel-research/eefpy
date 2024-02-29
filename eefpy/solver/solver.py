@@ -1,8 +1,11 @@
 from .eef import *
-
+import cppyy
 import logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger()
+
+logging.basicConfig(format='%(name)s: %(message)s')
+
+logger = logging.getLogger('eefpy')
+logger.setLevel(logging.DEBUG)
 
 def solve(num_agents, num_types,agent_utils,items, alpha=None, iteralphalock=0,divisibles=True, 
            analyse=None, debug=False, efficiency:EfficiencyNotion=None, envy:EnvyNotion=None,
@@ -30,7 +33,7 @@ def solve(num_agents, num_types,agent_utils,items, alpha=None, iteralphalock=0,d
         allocation = I.solve(args.eef_cfg)
         if args.eef_cfg.trash_agent: 
             I.n -= 1
-        logger.info(I.print_allocation(allocation))
+        I.print_allocation(allocation)
         py_allocation = [list(row) for row in allocation]
 
         return py_allocation
@@ -38,6 +41,7 @@ def solve(num_agents, num_types,agent_utils,items, alpha=None, iteralphalock=0,d
         
     else:
         pass # READ FILE 
+
 
 def read_instance(I:EEF, num_agents, num_types,agent_utils, items, args: Arguments):
 

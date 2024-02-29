@@ -37,6 +37,7 @@ class MintcMode(Enum):
     NUM_POSITIVE_AGENTS = 2
     MIN_SET_OF_AGENTS = 3
     SUM_ENTRIES = 4
+
 class Arguments:
     def __init__(self, divisibles=False, analyze=False, alloc_file=""):
         self.eef_cfg = EEF_Config()

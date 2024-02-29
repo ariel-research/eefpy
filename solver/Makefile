@@ -12,8 +12,10 @@ CPLEX_FLAGS := -isystem$(CPLEX_DIR)/cplex/include \
                -Xlinker -L$(CPLEX_DIR)/concert/lib/x86-64_linux/static_pic \
 	       -DIL_STD
 
-eef.so: $(sources) $(headers) Makefile
-	g++ $(CFLAGS) $(CPLEX_FLAGS) -shared -fPIC -o $@ $(sources) -lilocplex -lconcert -lcplex -lm -pthread -ldl
-
 main: $(sources) $(headers) Makefile
 	g++ $(CFLAGS) $(CPLEX_FLAGS) -o $@ $(sources) -lilocplex -lconcert -lcplex -lm -pthread -ldl
+
+eef.so: $(sources) $(headers)
+	g++ $(CFLAGS) $(CPLEX_FLAGS) -shared -fPIC -o $@ $(sources) -lilocplex -lconcert -lcplex -lm -pthread -ldl
+
+
