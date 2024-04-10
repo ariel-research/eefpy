@@ -1,4 +1,4 @@
-This is the code accompanying the paper High-Multiplicity Fair
+This is the C++ code accompanying the paper High-Multiplicity Fair
 Allocation Made More Practical by Robert [Bredereck](https://robert.bredereck.info/), Aleksander Figiel (the main code contributor), [Andrzej Kaczmarczyk](https://www.user.tu-berlin.de/droores/), [Dušan Knop](https://fit.cvut.cz/cs/fakulta/lide/5176-rndr-dusan-knop-ph-d/publikace) and [Rolf Niedermeier](https://www.akt.tu-berlin.de/index.php?id=110570), which was [accepted for publication](https://aamas2021.soton.ac.uk/programme/accepted-papers/) at [the 20th
 International Conference on Autonomous Agents and Multiagent Systems](https://aamas2021.soton.ac.uk/).
 
