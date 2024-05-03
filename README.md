@@ -6,9 +6,34 @@ The solver, given a collection of indivisible resources, agents and the agents' 
 
 For a description of the supported fairness and efficiency concepts, techniques used by this solver, and the results otained see the paper: "High-Multiplicity Fair Allocation Made More Practical", referred at the 20th International Conference on Autonomous Agents and Multiagent Systems.
 
-## Installation 
+## Prerequisites
+CPLEX solver by IBM:
+1. For free academic license follow [this guide](https://community.ibm.com/community/user/ai-datascience/blogs/xavier-nodet1/2020/07/09/cplex-free-for-students).
+2. Follow the [installation guide](https://www.ibm.com/docs/en/icos/20.1.0?topic=2010-installing-cplex-optimization-studio).
+3. Edit the [Makefile](/solver/Makefile) with the relevant path and version in `CPLEX_DIR`.
 
-...
+## Requirements
+1. C++ GNU
+2. python & pip
+3. venv
+
+## Installation 
+1. Clone the repository:
+    ```
+    git clone https://github.com/ariel-research/eefpy
+    ```
+2. Create a virtual environment:
+    ```
+    python -m venv venv
+    ```
+3. Activate the venv:
+    ```
+    source venv/bin/activate
+    ```
+4. Install requirements:
+    ```
+    pip install -r eefpy/requirements.txt
+    ```
 
 ## Usage examples
 
