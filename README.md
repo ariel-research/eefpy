@@ -21,13 +21,11 @@ CPLEX solver by IBM:
 1. Clone the repository:
     ```
     git clone https://github.com/ariel-research/eefpy
+    cd eefpy
     ```
-2. Create a virtual environment:
+2. Create a Python virtual environment and activate it:
     ```
-    python -m venv venv
-    ```
-3. Activate the venv:
-    ```
+    virtualenv venv
     source venv/bin/activate
     ```
 4. Install requirements:
