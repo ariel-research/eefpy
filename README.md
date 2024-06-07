@@ -1,10 +1,11 @@
 # eefpy -- efficient envy-free practical solver in Python
 
 This is a Python envelope for the C++ library [eef-practical-solver-code](https://git.tu-berlin.de/akt-public/eef-practical-solver-code), by Andrzej Kaczmarczyk.
+The C++ code accompanies the paper "High-Multiplicity Fair Allocation Made More Practical", by Robert Bredereck, Aleksander Figiel (the main code contributor), Andrzej Kaczmarczyk, Dušan Knop and Rolf Niedermeier, which was presented at AAMAS 2021. The code is protected by GNU GPL v3.0.
 
 The solver, given a collection of indivisible resources, agents and the agents' valuations of resources, finds an allocation meeting some configurable fairness and efficiency properties, or declares that such an allocation meeting the desired desiderata does not exist.
 
-For a description of the supported fairness and efficiency concepts, techniques used by this solver, and the results otained see the paper: "High-Multiplicity Fair Allocation Made More Practical", referred at the 20th International Conference on Autonomous Agents and Multiagent Systems.
+For a description of the supported fairness and efficiency concepts, techniques used by this solver, and the results obtained, see the above-mentioned paper.
 
 ## Prerequisites
 CPLEX solver by IBM:
@@ -14,8 +15,7 @@ CPLEX solver by IBM:
 
 ## Requirements
 1. C++ GNU
-2. python & pip
-3. venv
+2. python & pip, virtualenv
 
 ## Installation 
 1. Clone the repository:
