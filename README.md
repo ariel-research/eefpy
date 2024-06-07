@@ -10,7 +10,7 @@ For a description of the supported fairness and efficiency concepts, techniques 
 CPLEX solver by IBM:
 1. For free academic license, follow [this guide](https://community.ibm.com/community/user/ai-datascience/blogs/xavier-nodet1/2020/07/09/cplex-free-for-students): create an IBM id with your university-based email, login, and then click on "Data Science" at the left menu bar.
 2. Follow the [installation guide](https://www.ibm.com/docs/en/icos/20.1.0?topic=2010-installing-cplex-optimization-studio) -- install on Linux.
-3. Edit the [Makefile](/solver/Makefile) with the relevant path and version in `CPLEX_DIR`.
+3. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
 
 ## Requirements
 1. C++ GNU
