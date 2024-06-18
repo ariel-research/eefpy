@@ -87,15 +87,16 @@ def read_instance(I:EEF, num_agents, num_types,agent_utils, items, args: Argumen
 
 
 def get_input_args(kwargs: dict ,args: Arguments):
-    if kwargs['envy']:
+    if kwargs['envy'] is True:
         args.eef_cfg.envy = kwargs['envy'].value
     if kwargs['alpha']:
         args.eef_cfg.alpha = kwargs['alpha'].value
     if kwargs['iter_alpha_lock']:
         args.eef_cfg.iterated_alpha_locking = True
-    if kwargs['obj']:
+    if kwargs['obj'] is True:
+        print(kwargs['obj'] is True)
         args.eef_cfg.objectives.push_back(kwargs['obj'].value)
-    if kwargs['efficiency']:
+    if kwargs['efficiency'] is True:
         args.eef_cfg.efficiency = kwargs['efficiency'].value
         if kwargs['efficiency'] == EfficiencyNotion.DYNAMIC_MINTC_CRUDE_EQ0:
             args.eef_cfg.efficiency = EfficiencyNotion.DYNAMIC_MINTC
