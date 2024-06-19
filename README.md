@@ -30,7 +30,7 @@ CPLEX solver by IBM:
     ```
 4. Install requirements:
     ```
-    pip install -r eefpy/requirements.txt
+    pip install -r requirements.txt
     ```
 5. Build and install eefpy from source
     ```
@@ -39,5 +39,12 @@ CPLEX solver by IBM:
     
 ## Usage examples
 
-see [eefpy/examples/lib_examples.py](eefpy/examples/lib_examples.py).
+Run the file [examples/lib_examples.py](examples/lib_examples.py).
 
+## Verification
+
+To verify the results, make the solver in the [solver/](solver/) folder, then run:
+
+    solver/main
+
+Copy and paste the text from the files [examples/paper_example](examples/paper_example) and  [examples/example2](examples/example2).
