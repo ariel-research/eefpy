@@ -1,6 +1,8 @@
 include pyproject.toml
-include requirements/*
+include requirements.txt
 include LICENSE
+include examples
+include solver
 global-include *.md
 global-include VERSION
 exclude solver/main
