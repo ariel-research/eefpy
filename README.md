@@ -11,13 +11,28 @@ For a description of the supported fairness and efficiency concepts, techniques 
 CPLEX solver by IBM:
 1. For free academic license, follow [this guide](https://community.ibm.com/community/user/ai-datascience/blogs/xavier-nodet1/2020/07/09/cplex-free-for-students): create an IBM id with your university-based email, login, and then click on "Data Science" at the left menu bar.
 2. Follow the [installation guide](https://www.ibm.com/docs/en/icos/20.1.0?topic=2010-installing-cplex-optimization-studio) -- install on Linux.
-3. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
+
 
 ## Requirements
 1. C++ GNU
 2. python & pip, virtualenv
 
-## Installation 
+## Installation (pip)
+1. Run:
+    ```
+    pip install eefpy
+    ```
+2. Navigate to the `solver` folder:
+    ```
+    cd solver
+    ```
+3. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
+4.  Save the Makefile and run:
+    ```
+    make eef
+    ```
+
+## Installation from source
 1. Clone the repository:
     ```
     git clone https://github.com/ariel-research/eefpy
@@ -35,6 +50,11 @@ CPLEX solver by IBM:
 5. Build and install eefpy from source
     ```
     pip install -e .
+    ```
+6. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
+7.  Save the Makefile and run:
+    ```
+    make eef
     ```
     
 ## Usage examples

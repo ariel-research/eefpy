@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = 'eefpy'
+description = 'python eef practical solver'
+readme = 'README.MD'
+requires-python = '>=3.8'
+dynamic = ['version']
+license = {file = "LICENSE"}
+keywords = [
+    'Fair Allocation',
+    'Mathematics',
+]
+
+dependencies = [
+    "cppyy",
+]
+
+[[project.authors]]
+name = 'ariel-research'
+email = 'eefpy@csariel.xyz'
+
+[[project.maintainers]]
+name = 'eefpy Developers'
+email = 'eefpy-discuss@googlegroups.com'
+
+[project.urls]
+"Source Code" = 'https://github.com/ariel-research/eefpy'
+
+[tool.setuptools.dynamic.version]
+attr = 'eefpy.__version__'
+

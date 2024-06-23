@@ -1,0 +1,7 @@
+include pyproject.toml
+include requirements/*
+include LICENSE
+global-include *.md
+global-include VERSION
+exclude solver/main
+exclude eefpy.egg-info
