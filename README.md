@@ -8,16 +8,13 @@ The solver, given a collection of indivisible resources, agents and the agents' 
 For a description of the supported fairness and efficiency concepts, techniques used by this solver, and the results obtained, see the above-mentioned paper.
 
 ## Prerequisites
-CPLEX solver by IBM:
-1. For free academic license, follow [this guide](https://community.ibm.com/community/user/ai-datascience/blogs/xavier-nodet1/2020/07/09/cplex-free-for-students): create an IBM id with your university-based email, login, and then click on "Data Science" at the left menu bar.
-2. Follow the [installation guide](https://www.ibm.com/docs/en/icos/20.1.0?topic=2010-installing-cplex-optimization-studio) -- install on Linux.
-3. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
 
-## Requirements
-1. C++ GNU
-2. python & pip, virtualenv
+1. `eefpy` depends on `cppyy`, which requires C++ GNU. Therefore, it currently works on Linux and does not work on Windows.
 
-## Installation 
+2. `eefpy` uses the CPLEX solver by IBM. To get a free academic license, follow [this guide](https://community.ibm.com/community/user/ai-datascience/blogs/xavier-nodet1/2020/07/09/cplex-free-for-students): create an IBM id with your university-based email, login, and then click on "Data Science" at the left menu bar. Then, follow the [installation guide](https://www.ibm.com/docs/en/icos/20.1.0?topic=2010-installing-cplex-optimization-studio) -- install on Linux.
+
+## Installation
+
 1. Clone the repository:
     ```
     git clone https://github.com/ariel-research/eefpy
@@ -28,6 +25,9 @@ CPLEX solver by IBM:
     virtualenv venv
     source venv/bin/activate
     ```
+
+3. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
+
 4. Install requirements:
     ```
     pip install -r requirements.txt
@@ -36,7 +36,7 @@ CPLEX solver by IBM:
     ```
     pip install -e .
     ```
-    
+
 ## Usage examples
 
 Run the file [examples/lib_examples.py](examples/lib_examples.py).
