@@ -18,14 +18,14 @@ For a description of the supported fairness and efficiency concepts, techniques 
     ```
     pip install eefpy
     ```
-2. Navigate to the `solver` folder:
+2. Navigate to the `solver_cpp` folder:
     ```
-    cd solver
+    cd solver_cpp
     ```
-3. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
+3. Edit the file [eefpy/solver_cpp/Makefile](eefpy/solver_cpp/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
 4.  Save the Makefile and run:
     ```
-    make eef
+    make eef.so
     ```
 
 ## Installation from source
@@ -40,7 +40,7 @@ For a description of the supported fairness and efficiency concepts, techniques 
     source venv/bin/activate
     ```
 
-3. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
+3. Edit the file [eefpy/solver_cpp/Makefile](eefpy/solver_cpp/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
 
 4. Install requirements:
     ```
@@ -50,10 +50,10 @@ For a description of the supported fairness and efficiency concepts, techniques 
     ```
     pip install -e .
     ```
-6. Edit the file [/solver/Makefile](/solver/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
+6. Edit the file [eefpy/solver_cpp/Makefile](eefpy/solver_cpp/Makefile): update the `CPLEX_DIR` variable to match the folder in which you installed CPLEX.
 7.  Save the Makefile and run:
     ```
-    make eef
+    make eef.so
     ```
     
 ## Usage examples
@@ -62,8 +62,8 @@ Run the file [examples/lib_examples.py](examples/lib_examples.py).
 
 ## Verification
 
-To verify the results, make the solver in the [solver/](solver/) folder, then run:
+To verify the results, make the solver in the [eefpy/solver_cpp/](eefpy/solver_cpp/) folder, then run:
 
-    solver/main
+    eefpy/solver_cpp/main
 
 Copy and paste the text from the files [examples/paper_example](examples/paper_example) and  [examples/example2](examples/example2).

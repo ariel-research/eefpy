@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = 'eefpy'
 description = 'python eef practical solver'
-readme = 'README.MD'
+readme = 'README.md'
 requires-python = '>=3.8'
 dynamic = ['version']
 license = {file = "LICENSE"}

@@ -15,7 +15,5 @@ CPLEX_FLAGS := -isystem$(CPLEX_DIR)/cplex/include \
 main: $(sources) $(headers) Makefile
 	g++ $(CFLAGS) $(CPLEX_FLAGS) -o $@ $(sources) -lilocplex -lconcert -lcplex -lm -pthread -ldl
 
-eef: eef.so
-
 eef.so: $(sources) $(headers)
 	g++ $(CFLAGS) $(CPLEX_FLAGS) -shared -fPIC -o $@ $(sources) -lilocplex -lconcert -lcplex -lm -pthread -ldl

@@ -44,7 +44,7 @@ all necessary servicing, repair or correction.**
 CPLEX solver by IBM
 
 ## Installation
-The solver can be compiled simply by runing `make` in directory `solver`. As an effect, the solver executable called `main` should appear in the directory.
+The solver can be compiled simply by runing `make` in directory `eefpy/solver_cpp`. As an effect, the solver executable called `main` should appear in the directory.
 
 ## Input format
 ```

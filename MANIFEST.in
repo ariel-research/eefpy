@@ -1,9 +1,7 @@
 include pyproject.toml
 include requirements.txt
 include LICENSE
-include examples
-include solver
-global-include *.md
+include README.md
+include README-cpp.md
+recursive-include eefpy/solver_cpp *
 global-include VERSION
-exclude solver/main
-exclude eefpy.egg-info
